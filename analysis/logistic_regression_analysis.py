@@ -58,7 +58,7 @@ class LogisticRegressionModel:
         coefficients = self.model.coef_[0]
         feature_importance = pd.DataFrame({
             'feature': self.X.columns,
-            'importance': np.abs(coefficients)
+            'importance': coefficients
         })
 
         return feature_importance.sort_values(by='importance', ascending=False)
