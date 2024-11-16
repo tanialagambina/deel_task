@@ -22,7 +22,6 @@ class LogisticRegressionModel:
     y_test: pd.Series
 
     def __init__(self, data: pd.DataFrame, target_variable: str):
-        # Initialize with data and target variable
         self.data = data
         self.target_variable = target_variable
 
@@ -32,10 +31,9 @@ class LogisticRegressionModel:
         using the input target variable.
         """
         self.data.dropna(axis=1, inplace=True)
-        self.X = self.data.drop(columns=[self.target_variable])  # Drop target and chargeback columns
+        self.X = self.data.drop(columns=[self.target_variable])
         self.y = self.data[self.target_variable]
 
-        # Split into training and test sets
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
             self.X,
             self.y,
@@ -86,7 +84,7 @@ class LogisticRegressionModel:
         roc_auc = auc(fpr, tpr)
         plt.figure(figsize=(5, 5))
         plt.plot(fpr, tpr, color='blue', lw=2, label=f'ROC curve (AUC = {roc_auc:.2f})')
-        plt.plot([0, 1], [0, 1], color='black', lw=2, linestyle='--')  # Diagonal line (random classifier)
+        plt.plot([0, 1], [0, 1], color='black', lw=2, linestyle='--')
         plt.xlim([0.0, 1.0])
         plt.ylim([0.0, 1.05])
         plt.xlabel('False Positive Rate')
